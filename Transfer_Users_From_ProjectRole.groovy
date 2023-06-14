@@ -23,7 +23,6 @@ Collection<String> pepEditors = []
 
 //Get the current editors as a list of users
 editors = projectRoleService.getProjectRoleActors(projectEditorRole, project, errorCollection).getUsers()
-//log.warn(editors)
 
 //Iterate over the list of editors, check if they're active, if yes, add them to a new list
 for(actor in editors){
@@ -37,3 +36,6 @@ log.warn(pepEditors)
 projectRoleService.addActorsToProjectRole(pepEditors,projectPEPRole,project,ProjectRoleActor.USER_ROLE_ACTOR_TYPE, errorCollection)
 
 log.warn(errorCollection.errorMessages)
+
+//Removes the users from the "Editor" role
+projectRoleService.removeActorsFromProjectRole(pepEditors,projectEditorRole, project,ProjectRoleActor.USER_ROLE_ACTOR_TYPE,errorCollection)
